@@ -320,20 +320,48 @@ The idea of bits being nothing without context is very evident these past few ch
 |  1  |     1      |
 |  8  |     8      |
 
-
 Conversion of twos complement to unsigned is;
 if negative then add to 2$^w$;
 if positive then keep it thus x in 16bits will be;
+
 ```
 T2U$_16$
--x = 2^16 - x
+-x = 2^16 + x
 x = x
 ```
+
 In the other hand, you can also look at the U2T$_16$ this way;
+
 ```
 x >= 2$^w-1$ ==> x - 2^w
 x < 2$^w-1$ ==> x
 ```
 
+> Converting U2T(x) x = x if x ≤ Tmax and $x - 2^w$ if x > Tmax
+> Converting from 2s complement to unsigned is x if x is positive and $2^w + x$ if x is negative.
+
+### Practice Problem 2.19
+
+|  x  | T2U4(x) |
+| :-: | :-----: |
+| -1  |   15    |
+| -5  |   11    |
+| -6  |   10    |
+| -4  |   12    |
+|  1  |    1    |
+|  8  |    8    |
+
 ### Signed vs unsigned in C
+
 In C, when arithmetic or comparison operations are done between an unsigned and signed value, the signed value is casted to unsigned.
+Umax has the same bit representation in unsigned form as does -1 in two's complement form.
+
+### Practice Problem 2.21
+
+|          Expression          |   Type   | Evaluation |
+| :--------------------------: | :------: | :--------: |
+| -2147483647-1 == 2147483648U | Unsigned |     1      |
+|  -2147483645-1 < 2147483647  | Unsigned |     0      |
+| -2147483647-1U < 2147483647  | Unsigned |     0      |
+| -2147483647-1 < -2147483647  |  Signed  |     1      |
+| -2147483647-1U < -2147483647 | Unsigned |     1      |
