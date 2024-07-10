@@ -11,6 +11,7 @@ void inplace_swap(int *x, int *y) {
 void reverse_array(int a[], int len) {
   for (int i = 0; i < --len; i++) {
     inplace_swap(&a[i], &a[len]);
+
   }
 }
 

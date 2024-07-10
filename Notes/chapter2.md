@@ -13,21 +13,21 @@ In dealing with bit patterns, hexadecimal notation is preferred.
 It's compact, not too verbose as binary, not too tedious to convert to binary as decimal.
 It represents 4 binary digits which makes it perfect for representing 8 bits which will be 2 hex numbers.
 
-## 2.1.1 Hexadecimal Notation
+### 2.1.1 Hexadecimal Notation
 
 Why Hex?
 The machine runs on binary which is not very intuitive for us but decimal is also not compact enough.
 Hexadecimal is great as two bytes also make up 16. It is also readable as it's not too long.
 Easy to convert to binary and decimal when needed.
 
-### Practice Problem 2.1
+#### Practice Problem 2.1
 
 A. 0x25B9D2 to binary = `10-0101-1011-1001-1101-0010` ✅
 B. 1010111001001001 to hexadecimal = `0xAE49` ✅
 C. 0xA8B3D to binary = `1010-1000-1011-0011-1101` ✅
 D. 1100100010110110010110 to hexadecimal = `0x322D96` ✅
 
-### Practice Problem 2.2
+#### Practice Problem 2.2
 
 | n   | $2^n$ (decimal) | $2^n$ (hexadecimal) |
 | --- | --------------- | ------------------- |
@@ -39,7 +39,7 @@ D. 1100100010110110010110 to hexadecimal = `0x322D96` ✅
 | 6   | 64              | 0x40                |
 | 8   | 256             | 0x100               |
 
-### Practice Problem 2.3
+#### Practice Problem 2.3
 
 | Decimal | Binary    | Hexadecimal |
 | ------- | --------- | ----------- |
@@ -53,19 +53,19 @@ D. 1100100010110110010110 to hexadecimal = `0x322D96` ✅
 | 189     | 1011 1101 | 0xBD        |
 | 245     | 1111 0101 | 0xF5        |
 
-### Practice Problem 2.4
+#### Practice Problem 2.4
 
 A. 0x605c + 0x5 = 0x6061
 B. 0x605c - 0x20 = 0x603c
 C. 0x605c + 32 = 0x607c
 D. 0x60fa - 0x605c = 0x9E
 
-## 2.1.2 Data sizes
+### 2.1.2 Data sizes
 
 Word size is the number of bits of CPU can process at a time.
 It determines the maximum size of the virtual address space.
 
-## 2.1.3 Addressing and Byte Ordering
+### 2.1.3 Addressing and Byte Ordering
 
 Dealing with program objects that span multiple bytes, two conventions needs to be established.
 
@@ -81,7 +81,7 @@ Mostly the order in which bytes are stored in memory is irrelevant except in few
 2. Another is when representing integer data. For little endian machines integer data represented at byte level needs to have the least significant byte at utmost left with the most significant at your far right.
 3. It also becomes a problem when when types are casted into different types.
 
-### Practice Problem 2.5
+#### Practice Problem 2.5
 
 | Little Endian | Big Endian |
 | ------------- | ---------- |
@@ -89,7 +89,7 @@ Mostly the order in which bytes are stored in memory is irrelevant except in few
 | 78 56         | 12 34      |
 | 78 56 34      | 12 34 56   |
 
-### Practice Problem 2.6
+#### Practice Problem 2.6
 
 A. 0x0027C8F8 = 0000 0000 0010 0111 1100 1000 1111 1000
 0x4A1F23E0 = 0100 1010 0001 1111 0010 0011 1110 0000
@@ -100,19 +100,19 @@ ii. 0x4A1F23E0 = 010010100 `001111100100011111000` 00
 
 NB: Letters `a` through `z` have ASCII codes 0x61 through 0x7A.
 
-## Representing Strings
+### Representing Strings
 
 A string in C is an array of characters that terminates with a null character.
 
-### Practice Problem 2.7
+#### Practice Problem 2.7
 
 `6d 6e 6f 70 71 72`
 
-## Representing Code
+### Representing Code
 
 Machine/Binary code are not portable. They are different based on OS and architecture.
 
-## Boolean Algebra
+### Boolean Algebra
 
 Boolean operations distribute over `&` and `|`.
 Thus $a&(b|c) = a&b | a&c$. Also, $a|(b&c) = a|b & a"c$.
@@ -127,7 +127,7 @@ Thus $a&(b|c) = a&b | a&c$. Also, $a|(b&c) = a|b & a"c$.
 | 1 | 1 | 0 | Yellow |
 | 1 | 1 | 1 | White |
 
-### Practice Problem 2.8
+#### Practice Problem 2.8
 
 | Operation | Result     |
 | --------- | ---------- |
@@ -139,7 +139,7 @@ Thus $a&(b|c) = a&b | a&c$. Also, $a|(b&c) = a|b & a"c$.
 | aORb      | [11101111] |
 | a^b       | [10101111] |
 
-### Practice Problem 2.9
+#### Practice Problem 2.9
 
 A.
 | Color | Complement |
@@ -158,7 +158,7 @@ Blue | Green = `011` = Cyan
 Yellow & Cyan = `010` = Green
 Red ^ Magenta = `001` = Blue
 
-## Bit level operations in C
+### Bit level operations in C
 
 Given two numbers `x=5` and `y=10`, we can switch these two numbers in place by using a temporary variable as the C code below;
 
@@ -217,15 +217,15 @@ int main(void) {
 The above code changes the two variables without using a temporary variable. When you do those 3 XOR operations, the variables will switch places but why?
 To understand that, let's first understand what Exclusive OR (XOR) is.
 
-### Practice Problem 2.12
+#### Practice Problem 2.12
 
 A. AND Operation with 0xFF
 B. XOR with bitmask 0xFFFFFF00
 C. OR operation with bitmask 0xFF
 
-## Logical Operations in C
+### Logical Operations in C
 
-### Practice Problem 2.14
+#### Practice Problem 2.14
 
 a = 0x55, b = 0x46
 LOR = Logical OR operator
@@ -241,10 +241,10 @@ OR = bit OR operator
 | !a LOR !b | 0x00 |
 | a && ~b | 0x00 |
 
-## Shift operations in C
+### Shift operations in C
 
 Shift operations allow you to shift the bits of binaries.
-x << 4 means left shift the bits, which means count 4 bits from the left and pick the remaining bits and padd the rest with 0s.
+x << 4 means left shift the bits, which means count 4 bits from the right and pick the remaining bits and pad the rest with 0s.
 For example, if I apply x << 4 to 10010111 then it will be 0111**_0000_**.
 When it comes to right shifting, there are two different ways; logical and arithmetic.
 With logical the last shift bits are removed shifting the remaining values to the right and the leftmost part padded with 0s.
@@ -252,7 +252,7 @@ While, with arithmetic they are padded with the most significant bit.
 For example, x >> 4 to 10010111 will be **_0000_**1001 in logical shift and **_1111_**1001 in an arithmetic shift.
 Mostly arithmetic is done with signed bits.
 
-### Practice problem 2.16
+#### Practice problem 2.16
 
 | a(Hex) | a(Binary) | a<<2(Binary) | a<<2(Hex) | a>>3 logical(Binary) | a>>3 logical(Hex) | a>>3 arithmetic(Binary) | a>>3 arithmetic(Hex) |
 | :----: | :-------: | :----------: | :-------: | :------------------: | :---------------: | :---------------------: | :------------------: |
@@ -279,7 +279,7 @@ For example, binary number 1011 to integer is $1x2^3 + 0x2^2 + 1x2^1 + 1x2^0 = 1
 Same vibe as above, except with this the first value is a signed bit and thus can be negative or positive.
 eg. 1011 = $-1x2^3 + 0x2^2 + 1x2^1 + 1x2^0 = -8 x 0 x 2 x 1 = -5$
 
-### Practice problem 2.17
+#### Practice problem 2.17
 
 | Hexadecimal | Binary | B2U | B2T |
 | :---------: | :----: | :-: | :-: |
@@ -292,7 +292,7 @@ eg. 1011 = $-1x2^3 + 0x2^2 + 1x2^1 + 1x2^0 = -8 x 0 x 2 x 1 = -5$
 
 The min of hex in 8 bits in 0x80 and the max 0x7F
 
-### Practice Problem 2.18
+#### Practice Problem 2.18
 
 | Hex(2s complement) | Decimal |
 | :----------------: | :-----: |
@@ -307,7 +307,7 @@ The min of hex in 8 bits in 0x80 and the max 0x7F
 |        0xc0        |   192   |
 |       -0x48        |   -72   |
 
-## Conversion between Signed and Unsigned
+### Conversion between Signed and Unsigned
 
 The idea of bits being nothing without context is very evident these past few chapters. Basically the underlying bit patterns don't change during conversion, what changes is context. Thus, the same pattern will represent a positive value in unsigned form and negative value in signed form.
 
@@ -340,7 +340,7 @@ x < 2$^w-1$ ==> x
 > Converting U2T(x) x = x if x ≤ Tmax and $x - 2^w$ if x > Tmax
 > Converting from 2s complement to unsigned is x if x is positive and $2^w + x$ if x is negative.
 
-### Practice Problem 2.19
+#### Practice Problem 2.19
 
 |  x  | T2U4(x) |
 | :-: | :-----: |
@@ -356,7 +356,7 @@ x < 2$^w-1$ ==> x
 In C, when arithmetic or comparison operations are done between an unsigned and signed value, the signed value is casted to unsigned.
 Umax has the same bit representation in unsigned form as does -1 in two's complement form.
 
-### Practice Problem 2.21
+#### Practice Problem 2.21
 
 |          Expression          |   Type   | Evaluation |
 | :--------------------------: | :------: | :--------: |
@@ -364,4 +364,130 @@ Umax has the same bit representation in unsigned form as does -1 in two's comple
 |  -2147483645-1 < 2147483647  | Unsigned |     0      |
 | -2147483647-1U < 2147483647  | Unsigned |     0      |
 | -2147483647-1 < -2147483647  |  Signed  |     1      |
-| -2147483647-1U < -2147483647 | Unsigned |     1      |
+| -2147483648-1U < -2147483647 | Unsigned |     1      |
+
+### Expanding bit representation of a number
+
+To convert an unsigned number to a larger data type, we simple add leading zeros to the representation.
+This is known as **zero extension**.
+Thus, 1111U(4 bits) -> 00001111U(8 bits) also, 0xcfc7U -> 0xcfc7ffffU and 0xcfc7(signed) -> 0x0000cfc7.
+The representation above is big endian.
+
+To convert a two's complement to a larger data type, we add the most significant bits to the beginning.
+
+#### Practice Problem 2.22
+
+A. [1100] -> -8+4 = -4
+B. [11100] -> -16+8+4 = -4
+C. [111100] -> -32+16+8+4 = -4
+
+#### Practive Problem 2.23
+
+| w          | fun1(w)    | fun2(w)    |
+| ---------- | ---------- | ---------- |
+| Ox00000076 | 0x00000076 | 0x00000076 |
+| 0x87654321 | 0x00000021 | 0x00000021 |
+| 0x000000C9 | 0x000000C9 | 0xFFFFFFC9 |
+| 0xEDCBA987 | 0x00000087 | 0xFFFFFF87 |
+
+### Truncating numbers
+
+When converting the numbers from some bits to lesser bits.
+Like from 8bits to 4 bits, you only count from the 4 bits.
+Thus you can have x mod 2^k
+
+#### Practice Problem 2.24
+
+Truncate 4 bit value to 3bit
+
+##### Unsigned
+
+| Original | Truncated |
+| -------- | --------- |
+| 1        | 1         |
+| 3        | 3         |
+| 5        | 5         |
+| 12       | 4         |
+| 14       | 6         |
+
+##### Two's complement
+
+| Original | Truncated |
+| -------- | --------- |
+| 1        | 1         |
+| 3        | 3         |
+| 5        | 5         |
+| -4       | -4        |
+| -2       | -2        |
+
+### Practice Problem 2.25
+
+The error with the code is because when the unsigned length becomes `-1` it's interpreted in it's unsigned form.
+In it's unsigned form, it will always be greater than i, leading it to access indices that are beyond the length of a.
+The fix is to change it to signed integer
+
+### Practice Problem 2.26
+
+The function produces an error when the difference between s and t is negative.
+`strlen` returns an unsigned integer thus when it becomes negative, it produces weird result which leads to s always being bigger than t.
+The solution is to typecast the difference between the `strlen` of both s and t to int before comparing with 0.
+
+## Integer Arithmetic
+
+### Unsigned Addition
+
+Adding two non negative integers $0 ≤ x, y < 2^w$ result in $0 ≤ x+y ≤ 2^(w+1) - 2$.
+This means addition of two positive integers will always lead to an increase in bit number.
+If we maintain the sum and add another number it will lead to w+2 bits which leads unbounded word size.
+
+Programming languages these days support fixed sized arithmetic, they do so by truncating the most significant bit.
+Thus, the sum of two non negative integers $0 ≤ x, y < 2^w$ will lead to the $2^w mod x+y$ if x+y > 2^w.
+Thus, 8 + 12 in 4bits even will be 20 mod 2^4 = 4
+
+Derivation:
+x + y ≥ x
+sum s ≥ x if no overflow
+if s overflows s = x + y - 2^w
+Given that y < 2^w
+s = x + (y - 2^w) < x
+
+### Practice Problem 2.27
+
+```C
+int uadd_ok(unsigned x, unsigned y) {
+  // Not 0 will flip all the bits to 1 since they are all 0.
+  unsigned overflow = ~0U;
+  int sum = x + y;
+
+  return sum >= x || sum >= y;
+}
+```
+
+### Practice Problem 2.28
+
+| Hex | Decimal | -Decimal | -Hex |
+| --- | ------- | -------- | ---- |
+| 1   | 1       | 15       | F    |
+| 4   | 4       | 12       | C    |
+| 7   | 7       | 9        | 9    |
+| A   | 10      | 6        | 6    |
+| E   | 14      | 2        | 2    |
+
+### Two's complement addition
+
+Given a range of $2^w-1 ≥ x, y ≤ 2^w-1 - 1$, then the sum will be in the range $2^w ≤ x+y ≤ 2^w - 2$
+if x + y is represented as z then the value z will be a negative overflow if it is in the range $-2^w < z < 2^w-1$ and thus z will be $x+y+2^w$
+z will be a positive overflow if it is in the range $2^w-1 - 1 < z < 2^w - 2$ and thus z will be $x+y-2^w$
+Given $TMin ≤ x, y ≤ TMax$ it's a positive overflow if the sum s is $s ≤ 0$ if $x, y > 0$ and negative overflow if $s ≥ 0$ given $x,y < 0$
+
+### Practice Problem 2.29
+
+In 5 bits
+
+|      x      |      y      |     x+y      |   x+y(TC)   |  Case  |
+| :---------: | :---------: | :----------: | :---------: | :----: |
+| -12 [10100] | -15 [10001] | -27 [100101] |  5 [00101]  | Case 1 |
+| -8 [11000]  | -8 [11000]  | -16 [110000] | -16 [10000] | Case 2 |
+| -9 [10111]  |  8 [01000]  | -1 [111111]  | -1 [11111]  | Case 2 |
+|  2 [00010]  |  5 [00101]  |  7 [000111]  |  7 [00111]  | Case 3 |
+| 12 [01100]  |  4 [00100]  | 16 [010000]  | -16 [10000] | Case 4 |
