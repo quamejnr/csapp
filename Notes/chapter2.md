@@ -420,13 +420,13 @@ Truncate 4 bit value to 3bit
 | -4       | -4        |
 | -2       | -2        |
 
-### Practice Problem 2.25
+#### Practice Problem 2.25
 
 The error with the code is because when the unsigned length becomes `-1` it's interpreted in it's unsigned form.
 In it's unsigned form, it will always be greater than i, leading it to access indices that are beyond the length of a.
 The fix is to change it to signed integer
 
-### Practice Problem 2.26
+#### Practice Problem 2.26
 
 The function produces an error when the difference between s and t is negative.
 `strlen` returns an unsigned integer thus when it becomes negative, it produces weird result which leads to s always being bigger than t.
@@ -451,7 +451,7 @@ if s overflows s = x + y - 2^w
 Given that y < 2^w
 s = x + (y - 2^w) < x
 
-### Practice Problem 2.27
+#### Practice Problem 2.27
 
 ```C
 int uadd_ok(unsigned x, unsigned y) {
@@ -463,7 +463,7 @@ int uadd_ok(unsigned x, unsigned y) {
 }
 ```
 
-### Practice Problem 2.28
+#### Practice Problem 2.28
 
 | Hex | Decimal | -Decimal | -Hex |
 | --- | ------- | -------- | ---- |
@@ -480,7 +480,7 @@ if x + y is represented as z then the value z will be a negative overflow if it 
 z will be a positive overflow if it is in the range $2^w-1 - 1 < z < 2^w - 2$ and thus z will be $x+y-2^w$
 Given $TMin ≤ x, y ≤ TMax$ it's a positive overflow if the sum s is $s ≤ 0$ if $x, y > 0$ and negative overflow if $s ≥ 0$ given $x,y < 0$
 
-### Practice Problem 2.29
+#### Practice Problem 2.29
 
 In 5 bits
 
@@ -491,3 +491,69 @@ In 5 bits
 | -9 [10111]  |  8 [01000]  | -1 [111111]  | -1 [11111]  | Case 2 |
 |  2 [00010]  |  5 [00101]  |  7 [000111]  |  7 [00111]  | Case 3 |
 | 12 [01100]  |  4 [00100]  | 16 [010000]  | -16 [10000] | Case 4 |
+
+#### Practice Problem 2.30
+
+```C
+int tadd_ok(int x, int y) {
+  // An overflow can occur in two situations
+  // 1. If x and y are both greater than 0 but their sum is less than 0
+  // 2. If x and y are both less than 0 but their sum is greater than 0
+  int pos_overflow = (x > 0 && y > 0) && x + y <= 0;
+  int neg_overflow = (x < 0 && y < 0) && x + y >= 0;
+  return !(pos_overflow || neg_overflow);
+}
+```
+
+#### Practice Problem 2.31
+
+```C
+/* Determine whether arguments can be added without overflow
+*/ /* WARNING: This code is buggy. */
+int tadd_ok(int x, int y) {
+    int sum = x+y;
+    return (sum-x == y) && (sum-y == x);
+}
+```
+
+The above code is buggy because `sum - x` will always evaluate to y whether there is an overflow or not.
+
+#### Practice Problem 2.32
+
+Code is buggy when y is TMin.
+
+### Two's complement negation
+
+Tmin ≤ x ≤ Tmax; x = Tmin if x is Tmin and -x if x > Tmin
+
+#### Practice Problem 2.33
+
+| x(Hex) | x(Decimal) | -x(Decimal) | -x(Hex) |
+| ------ | ---------- | ----------- | ------- |
+| 2      | 2          | -2          | -2      |
+| 3      | 3          | -3          | -3      |
+| 9      | -7         | 7           | 7       |
+| B      | -5         | 5           | 5       |
+| C      | -4         | 4           | 4       |
+
+### Two's complement Multiplication
+
+Integers x, y in range $-2^w-1 ≤ x, y ≤ 2^w-1 - 1$ can have their product ranging between $-2^w-1 x 2^w-1 - 1 = -2^2w-2$
+Which could require as many as 2w bits to represent.
+After multiplication, you truncate the product to w bits. With unsigned, that's it but with Two's complement, need to change to 2s complement.
+Truncating is same as mod 2^w
+
+#### Practice Problem 2.34
+
+3 bit numbers
+
+| Mode             | x       | y       | x·y        | Truncated x·y |
+| ---------------- | ------- | ------- | ---------- | ------------- |
+| Unsigned         | 4[100]  | 5[101]  | 20[010100] | 4[100]        |
+| Two's complement | -4[100] | -3[101] | 12[001000] | -4[100]       |
+|                  |         |         |            |               |
+| Unsigned         | 2[010]  | 7[111]  | 14[001110] | 6[110]        |
+| Two's complement | 2[010]  | -1[111] | -2[111110] | -2[110]       |
+|                  |         |         |            |               |
+| Unsigned         | 6[110]  | 6[110]  | 36[100100] | 4[100]        |
+| Two's complement | -2[110] | -2[110] | 4[000100]  | -4[100]       |
