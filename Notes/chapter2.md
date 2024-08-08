@@ -4,7 +4,7 @@
 
 - [x] Understand the properties of unsigned and two's-complement number representations
 - [x] Understand how numbers are represented and the range of values that can be encoded for a given word size
-- [ ] Effect of casting between signed and unsigned numbers
+- [x] Effect of casting between signed and unsigned numbers
 - [ ] Understand the mathematical properties of arithmetic operations
 
 ## 2.1 Information Storage
@@ -539,7 +539,7 @@ Tmin ≤ x ≤ Tmax; x = Tmin if x is Tmin and -x if x > Tmin
 ### Two's complement Multiplication
 
 Integers x, y in range $-2^w-1 ≤ x, y ≤ 2^w-1 - 1$ can have their product ranging between $-2^w-1 x 2^w-1 - 1 = -2^2w-2$
-Which could require as many as 2w bits to represent.
+Which could require as many as 1w bits to represent.
 After multiplication, you truncate the product to w bits. With unsigned, that's it but with Two's complement, need to change to 2s complement.
 Truncating is same as mod 2^w
 
@@ -551,9 +551,47 @@ Truncating is same as mod 2^w
 | ---------------- | ------- | ------- | ---------- | ------------- |
 | Unsigned         | 4[100]  | 5[101]  | 20[010100] | 4[100]        |
 | Two's complement | -4[100] | -3[101] | 12[001000] | -4[100]       |
-|                  |         |         |            |               |
 | Unsigned         | 2[010]  | 7[111]  | 14[001110] | 6[110]        |
 | Two's complement | 2[010]  | -1[111] | -2[111110] | -2[110]       |
-|                  |         |         |            |               |
 | Unsigned         | 6[110]  | 6[110]  | 36[100100] | 4[100]        |
 | Two's complement | -2[110] | -2[110] | 4[000100]  | -4[100]       |
+
+### Multiplying by Constants
+
+Multiplying by constants can be done using left shifts. x << 2 means the product of x and 2^2.
+Generalizing from our example, consider the task of generating code for the expression x \* K, for some constant K. The compiler can express the binary representation of K as an alternating sequence of zeros and ones:
+(0 . . . 0) (1 . . . 1) (0 . . . 0) . . . (1 . . . 1)] For example, 14 can be written as [(0 . . . 0)(111)(0)]. Consider a run of ones from bit position n down to bit position m (n ≥ m). (For the case of 14, we have n = 3 and m = 1.) We can compute the effect of these bits on the product using either of two different forms:
+
+- Form A: (x<<n) + (x<<(n − 1)) + . . . + (x<<m)
+- Form B: (x<<(n + 1)) - (x<<m)
+
+#### Practice Problem 2.42
+
+```c
+#include <stdio.h>
+
+int div16(int val) { return (val < 0 ? val + 15 : val) >> 4; }
+```
+
+#### Practice Problem 2.43
+
+M = 31
+N = 8
+
+### Floating Points
+
+Floating points in binary just as decimals are represented by multiplying 2 by decreasing values from 0 after the binary point.
+Ex: 1.01 = 1*2^0 + 0*2^-1 + 1\*2^-2 = 1+0+(1/4) = 5/4
+
+#### Practice Problem 2.45
+
+| Fractional value | Binary  | Decimal |
+| :--------------: | :-----: | :-----: |
+|       1/8        |  0.001  |  0.125  |
+|       3/4        |  0.11   |  0.75   |
+|       5/16       | 0.0101  | 0.3125  |
+|      43/16       | 10.1011 | 2.6875  |
+|       9/8        |  1.001  |  1.125  |
+|       47/8       | 110.111 |  5.875  |
+|      51/16       | 11.0011 | 3.1875  |
+

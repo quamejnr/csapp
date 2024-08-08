@@ -1,4 +1,5 @@
 #include <limits.h>
+#include <stdint.h>
 #include <stdio.h>
 
 int uadd_ok(unsigned x, unsigned y) {
@@ -20,14 +21,18 @@ int tadd_ok(int x, int y) {
 }
 
 int main(void) {
-  unsigned x = UINT_MAX;
-  unsigned y = 2;
-  int v = INT_MAX - 2;
-  int w = INT_MAX;
+  // unsigned x = UINT_MAX;
+  // unsigned y = 2;
+  // int v = INT_MAX - 2;
+  // int w = INT_MAX;
+  //
+  // int s = INT_MIN + 5;
+  // int t = INT_MIN + 10;
+  //
+  // printf("%d\n", uadd_ok(x, y));
+  // printf("%d\n", tadd_ok(s, t));
 
-  int s = INT_MIN + 5;
-  int t = INT_MIN + 10;
-
-  printf("%d\n", uadd_ok(x, y));
-  printf("%d\n", tadd_ok(s, t));
+  uint8_t res = 5;
+  res <<= 8;
+  printf("%d", res);
 }
