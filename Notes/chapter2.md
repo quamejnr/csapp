@@ -578,7 +578,7 @@ int div16(int val) { return (val < 0 ? val + 15 : val) >> 4; }
 M = 31
 N = 8
 
-### Floating Points
+### Floating Point
 
 Floating points in binary just as decimals are represented by multiplying 2 by decreasing values from 0 after the binary point.
 Ex: 1.01 = 1*2^0 + 0*2^-1 + 1\*2^-2 = 1+0+(1/4) = 5/4
@@ -604,43 +604,40 @@ Denormalized values: The exponent is all 0s
 While for special cases where the exponent is represented by all `1s` thus being 255 and the fractional bits represented by all `0s`, you have an infinity on your hands.
 When the exponent is all `1s` and and the fractional bits are not `0s` then you have NaN(Not a Number).
 
-### floating point
-- Floating point to binary
-    - formula for conversion. 
-        - convert integer before radix point
-        - while fractional part != 0
-            - multiply by 2 and keep integer before radix point.
-        - Read integers top down
-        - Ex: 2.125 -> convert decimal 2 = (10)~2~
-        - 0.125 x 2 = 0.25 -> keep 0
-        - 0.25 x 2 = 0.5 -> keep 0
-        - 0.5 x 2 = 1.0 -> keep 1
-        - 2.125 in binary = (10.001)~2~ 
-- Normalisation
-    - Need for normalisation
-        - different representations. Ex 101.101 = 1.01101 x 2^2^ = 10110.1 x 2^-2^ ...
-    - Normalized values
-        - Implicit Normalisation 
-            - RHS of significant 1. Ex 101.101 = 1.01101 x 2^2^
-        - Explicit Normalisation
-            - LHS of significant 1. Ex 101.101 = 0.101101 x 2^3^
-    - Denormalized values
-        - exponent is all 0s. Thus e=1-bias and M has no implied 1. 
-        - represent 0s and numbers very close to 0, _gradual underflow_.
-    - Special values
-        - exponent = all 1s, mantissa = all 0s, value = infinity. Can be -ve/+ve depending on sign. 
-        - exponent = all 1s, mantissa ≠ 0s. value = NaN.
-- IEEE standard
-    - Different precisions
-        - Single point precision
-            - 32 bits -> sign=1, exponent=8, mantissa=23
-        - Double point precision
-            - 64 bits -> sign=1, exponent=11, mantissa=52
-    - representation 
-        ________________________
-        |sign|exponent|mantissa|
-        ------------------------
-    - formula for conversion to decimal
-        - v = (-1)^s^ x 1.M x 2^e^, where e = exponent - bias. For values between 1 < M < 2^k-1^.
-        - bias = 2^k-1^ - 1 where k is the number of bits for exponent.
+#### Floating point to binary
+- formula for conversion. 
+    1. convert integer before radix point
+    2. while fractional part != 0
+        - multiply by 2 and keep integer before radix point.
+    3. Read integers top down
+    - Ex: 2.125 -> convert decimal 2 = (10)~2~
+    - 0.125 x 2 = 0.25 -> keep 0
+    - 0.25 x 2 = 0.5 -> keep 0
+    - 0.5 x 2 = 1.0 -> keep 1
+    - 2.125 in binary = (10.001)~2~ 
+#### Normalisation
+- Need for normalisation
+    - different representations. Ex 101.101 = 1.01101 x 2^2^ = 10110.1 x 2^-2^ ...
+- Normalized values
+    - Implicit Normalisation 
+        - RHS of significant 1. Ex 101.101 = 1.01101 x 2^2^
+    - Explicit Normalisation
+        - LHS of significant 1. Ex 101.101 = 0.101101 x 2^3^
+- Denormalized values
+    - exponent is all 0s. Thus e=1-bias and M has no implied 1. 
+    - represent 0s and numbers very close to 0, _gradual underflow_.
+- Special values
+    - exponent = all 1s, mantissa = all 0s, value = infinity. Can be -ve/+ve depending on sign. 
+    - exponent = all 1s, mantissa ≠ 0s. value = NaN.
+#### IEEE standard
+- Different precisions
+    - Single point precision
+        - 32 bits -> sign=1, exponent=8, mantissa=23
+    - Double point precision
+        - 64 bits -> sign=1, exponent=11, mantissa=52
+- representation 
+    |sign|exponent|mantissa|
+- formula for conversion to decimal
+    - v = (-1)^s^ x 1.M x 2^e^, where e = exponent - bias. For values between 1 < M < 2^k-1^.
+    - bias = 2^k-1^ - 1 where k is the number of bits for exponent.
 
