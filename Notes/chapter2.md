@@ -636,7 +636,7 @@ When the exponent is all `1s` and and the fractional bits are not `0s` then you 
     - Double point precision
         - 64 bits -> sign=1, exponent=11, mantissa=52
 - representation 
-    |sign|exponent|mantissa|
+    - |sign|exponent|mantissa|
 - formula for conversion to decimal
     - v = (-1)^s^ x 1.M x 2^e^, where e = exponent - bias. For values between 1 < M < 2^k-1^.
     - bias = 2^k-1^ - 1 where k is the number of bits for exponent.
